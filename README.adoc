@@ -44,7 +44,6 @@ Most of these steps are automated.
 
 === Software setup
 
-.Software
 |===
 |Name |Tested version |Installation
 
@@ -86,21 +85,20 @@ In order to sync your cluster state with git you need to copy the public key and
 access on your GitHub repository. On GitHub go to _Settings &gt; Deploy keys_ click on _Add deploy key_,
 check _Allow write access_, paste the Flux public key and click _Add key_.
 
-When Flux has write access to your repository it will do the following:
+Flux will do the following:
 
-* installs the Istio operator
-* waits for Istio control plane to be ready
-* installs Flagger CRDs and Helm Releases
-* creates the Istio public gateway
-* creates the `prod` namespace
-* creates the load tester deployment
-* creates the frontend deployment and canary
-* creates the backend deployment and canary
+* install the Istio operator
+* wait for Istio control plane to be ready
+* install Flagger CRDs and Helm Releases
+* create the Istio public gateway
+* create the `prod` namespace
+* create the load tester deployment
+* create the frontend deployment and canary
+* create the backend deployment and canary
 
 image:https://raw.githubusercontent.com/fluxcd/helm-operator-get-started/master/diagrams/flux-istio-operator.png[Flux Istio Operator]
 
-You can customize the Istio installation with the `IstioOperator` resource located at
-https://github.com/stefanprodan/gitops-istio/blob/master/istio/control-plane.yaml[istio/control-plane.yaml]:
+You can customize the Istio installation with the `IstioOperator` resource located at `istio/control-plane.yaml`.
 
 [source,yaml]
 ----
