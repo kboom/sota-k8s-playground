@@ -18,7 +18,7 @@ REPO_URL=${1:-git@github.com:stefanprodan/gitops-istio}
 REPO_BRANCH=master
 TEMP=${REPO_ROOT}/temp
 
-rm -rf ${TEMP} && mkdir ${TEMP}
+rm -rf "${TEMP}" && mkdir "${TEMP}"
 
 helm repo add fluxcd https://charts.fluxcd.io
 

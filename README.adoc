@@ -81,7 +81,7 @@ Install Flux and its Helm Operator by specifying your fork URL:
 At a startup, Flux generates an SSH key and logs the public key.
 The above command will print the public key.
 
-In order to sync your cluster state with git you need to copy the public key and create a deploy key with write
+In order to sync your cluster state with git you need to copy the public key and create a deployment key with write
 access on your GitHub repository. On GitHub go to _Settings &gt; Deploy keys_ click on _Add deploy key_,
 check _Allow write access_, paste the Flux public key and click _Add key_.
 
@@ -120,15 +120,13 @@ spec:
 
 After modifying the Istio settings, you can push the change to git and Flux will apply it on the cluster.
 The Istio operator will reconfigure the Istio control plane according to your changes.
-It can take a couple of minutes for Flux to sync and apply the changes, to speed up the apply
-you can use `fluxctl sync` to trigger a git sync.
+It can take a couple of minutes for Flux to sync and apply the changes, to speed up you can use `fluxctl sync` to trigger a git sync.
 
 === Workloads bootstrap
 
 When Flux syncs the Git repository with your cluster, it creates the frontend/backend deployment, HPA and a canary object.
-Flagger uses the canary definition to create a series of objects: Kubernetes deployments,
-ClusterIP services, Istio destination rules and virtual services. These objects expose the application on the mesh and drive
-the canary analysis and promotion.
+Flagger uses the canary definition to create a series of objects: Kubernetes deployments, ClusterIP services, Istio destination rules and virtual services.
+These objects expose the application on the mesh and drive the canary analysis and promotion.
 
 [source,bash]
 ----
