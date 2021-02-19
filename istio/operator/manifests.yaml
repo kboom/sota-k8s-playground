@@ -167,7 +167,6 @@ rules:
   verbs:
   - get
   - create
-  - update
 - apiGroups:
   - policy
   resources:
@@ -247,7 +246,7 @@ spec:
       serviceAccountName: istio-operator
       containers:
         - name: istio-operator
-          image: docker.io/istio/operator:1.7.3
+          image: docker.io/istio/operator:1.7.0
           command:
           - operator
           - server

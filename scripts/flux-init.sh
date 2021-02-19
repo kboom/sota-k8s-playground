@@ -22,7 +22,7 @@ rm -rf "${TEMP}" && mkdir "${TEMP}"
 
 helm repo add fluxcd https://charts.fluxcd.io
 
-echo ">>> Installing Flux for ${REPO_URL} only watching istio paths"
+echo ">>> Installing Flux for ${REPO_URL} only watching Istio paths"
 kubectl create ns flux || true
 helm upgrade -i flux fluxcd/flux --wait \
 --set git.url=${REPO_URL} \

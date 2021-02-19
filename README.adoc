@@ -163,7 +163,7 @@ Find the Istio ingress gateway address with:
 
 [source,bash]
 ----
-kubectl -n istio-system get svc istio-ingressgateway -ojson | jq .status.loadBalancer.ingress
+kubectl -n istio-system get svc istio-ingressgateway -o json | jq .status.loadBalancer.ingress
 ----
 
 Open a browser and navigate to the ingress address, you'll see the frontend UI.
