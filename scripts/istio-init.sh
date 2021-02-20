@@ -12,9 +12,10 @@ if [[ ! -x "$(command -v helm)" ]]; then
     exit 1
 fi
 
-VERSION=1.7.0
+VERSION=1.9.0
 REPO_ROOT=$(git rev-parse --show-toplevel)
 
+echo "Installing Istio operator version ${VERSION}"
 curl -sL https://istio.io/downloadIstio | ISTIO_VERSION=${VERSION} sh -
 
 helm template "${REPO_ROOT}"/istio-${VERSION}/manifests/charts/istio-operator \
@@ -26,4 +27,11 @@ helm template "${REPO_ROOT}"/istio-${VERSION}/manifests/charts/istio-operator \
 
 rm -rf "${REPO_ROOT}"/istio-${VERSION}
 
-echo "Istio operator ${VERSION} manifests updated"
+echo "Installing Prometheus"
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.9/samples/addons/prometheus.yaml
+
+echo "Installing Kiali"
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.9/samples/addons/kiali.yaml
+
+echo "Installing Jaeger"
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.9/samples/addons/jaeger.yaml

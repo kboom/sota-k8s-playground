@@ -164,17 +164,15 @@ minikube service istio-ingressgateway -n istio-system
 
 === Canary releases
 
-Flagger implements a control loop that gradually shifts traffic to the canary while measuring key performance indicators
-like HTTP requests success rate, requests average duration and pod health.
-Based on analysis of the KPIs a canary is promoted or aborted, and the analysis result is published to Slack.
+Flagger implements a control loop that gradually shifts traffic to the canary while measuring key performance indicators like HTTP requests success rate, requests average duration and pod health.
+Based on analysis of the KPIs a canary is promoted or aborted.
 
 A canary analysis is triggered by changes in any of the following objects:
 * Deployment PodSpec (container image, command, ports, env, etc)
 * ConfigMaps and Secrets mounted as volumes or mapped to environment variables
 
 For workloads that are not receiving constant traffic Flagger can be configured with a webhook,
-that when called, will start a load test for the target workload. The canary configuration can be found
-at https://github.com/stefanprodan/gitops-istio/blob/master/prod/backend/canary.yaml[prod/backend/canary.yaml].
+that when called, will start a load test for the target workload.
 
 image:https://raw.githubusercontent.com/weaveworks/flagger/master/docs/diagrams/flagger-canary-steps.png[Flagger Canary Release]
 
@@ -228,11 +226,11 @@ Note that if new changes are applied to the deployment during the canary analysi
 
 === A/B testing
 
-Besides weighted routing, Flagger can be configured to route traffic to the canary based on HTTP match conditions.
+In addition to weighted routing, Flagger can be configured to route traffic to the canary based on HTTP match conditions.
 In an A/B testing scenario, you'll be using HTTP headers or cookies to target a certain segment of your users.
 This is particularly useful for frontend applications that require session affinity.
 
-You can enable A/B testing by specifying the HTTP match conditions and the number of iterations:
+You can enable A/B testing by specifying the HTTP match conditions, and the number of iterations:
 
 [source,yaml]
 ----
